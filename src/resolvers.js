@@ -1,26 +1,26 @@
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
 const resolvers = {
   Query: {
-    async user (root, { id }, { models }) {
-      return models.User.findById(id)
+    async user(root, { id }, { models }) {
+      return models.User.findByPk(id);
     },
-    async allRecipes (root, args, { models }) {
-      return models.Recipe.findAll()
+    async allRecipes(root, args, { models }) {
+      return models.Recipe.findAll();
     },
-    async recipe (root, { id }, { models }) {
-      return models.Recipe.findById(id)
-    }
+    async recipe(root, { id }, { models }) {
+      return models.Recipe.findByPk(id);
+    },
   },
   Mutation: {
-    async createUser (root, { name, email, password }, { models }) {
+    async createUser(root, { name, email, password }, { models }) {
       return models.User.create({
         name,
         email,
-        password: await bcrypt.hash(password, 10)
-      })
+        password: await bcrypt.hash(password, 10),
+      });
     },
-    async createRecipe (
+    async createRecipe(
       root,
       { userId, title, ingredients, direction },
       { models }
@@ -29,20 +29,20 @@ const resolvers = {
         userId,
         title,
         ingredients,
-        direction
-      })
-    }
+        direction,
+      });
+    },
   },
   User: {
-    async recipes (user) {
-      return user.getRecipes()
-    }
+    async recipes(user) {
+      return user.getRecipes();
+    },
   },
   Recipe: {
-    async user (recipe) {
-      return recipe.getUser()
-    }
-  }
-}
+    async user(recipe) {
+      return recipe.getUser();
+    },
+  },
+};
 
-module.exports = resolvers
+module.exports = resolvers;
