@@ -6,6 +6,8 @@ const models = require('../models');
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  introspection: true,
+  playground: true,
   context: { models },
 });
 
