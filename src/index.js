@@ -9,6 +9,10 @@ const server = new ApolloServer({
   context: { models },
 });
 
-server
-  .listen(process.env.port || 4000)
-  .then(({ url }) => console.log('Server is running on localhost:4000'));
+const port = process.env.PORT || 4000;
+server.listen(port).then(({ url }) =>
+  console.log(`
+    🚀  Server is running.
+    🔉  It is listening on port ${port}.
+    📭  Query at ${url}.`)
+);
