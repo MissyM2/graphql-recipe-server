@@ -10,7 +10,9 @@
   "production": {
     "use_env_variable": "POSTGRES_DB_URL",
     "dialect": "postgres",
-    "ssl": true,
+    "ssl": {
+      "rejectUnauthorized": false
+    },
     "dialectOptions": {
       "ssl": true
     }
