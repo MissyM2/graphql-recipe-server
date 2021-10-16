@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
 
-  //comment
   User.associate = function (models) {
     User.hasMany(models.Recipe, { foreignKey: 'userid' });
   };
